@@ -1,0 +1,32 @@
+{
+  "name": "mdk",
+  "version": "0.0.1",
+  "description": "Mia's Dev Kit",
+  "homepage": "https://github.com/Corvimia/mdk#readme",
+  "bugs": {
+    "url": "https://github.com/Corvimia/mdk/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Corvimia/mdk.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "bin": {
+    "mdk": "./build/cli.js"
+  },
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc && chmod +x ./build/cli.js"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.5",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "commander": "^13.1.0"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "ES2024",
+    "rootDir": "./src/",
+    "outDir": "./build",
+    "importHelpers": false,
+    "module": "commonjs"
+  }
+}
