@@ -13,6 +13,9 @@ const packageJson = JSON.parse(
   readFileSync(packageJsonPath, 'utf-8')
 );
 
+process.removeAllListeners('warning');
+
+
 const program = new Command();
 
 program

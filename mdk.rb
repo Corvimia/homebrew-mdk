@@ -4,7 +4,7 @@ class Mdk < Formula
   desc "Mia's Dev Kit"
   homepage "https://github.com/Corvimia/mdk"
   url "https://github.com/Corvimia/mdk/releases/download/v0.0.1/mdk-v0.0.1.tar.gz"
-  sha256 "d3b33ade0b9359543fa4d4d4cc5bf39eef382e78a72ad780a59df905210df1c2"
+  sha256 "0793cb02bf5bed94967716896d3ae1bdf9430bc6015f967625e5a1f1f14dfe25"
   license "ISC"
 
   def install
