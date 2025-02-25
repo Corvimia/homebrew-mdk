@@ -1,0 +1,4 @@
+{
+    "main": "dist/mdk.js",
+    "output": "sea-prep.blob"
+}
