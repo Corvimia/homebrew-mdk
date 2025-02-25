@@ -9,7 +9,7 @@ class Mdk < Formula
   desc "Mia's Dev Kit"
   homepage "https://github.com/Corvimia/mdk"
   url "https://github.com/Corvimia/mdk/archive/refs/tags/v0.0.1.tar.gz"
-  sha256 "REPLACE_WITH_ACTUAL_SHA256_AFTER_RELEASE"
+  sha256 "9234c552e783544ae4e8fba30324299cab07c2c6d3812fe1fa8fc4c1fb3a472b"
   license "ISC"
 
   depends_on "node"
