@@ -20,7 +20,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc && chmod +x ./build/cli.js",
-    "bundle": "esbuild src/cli.ts --bundle --platform=node --target=node22 --outfile=dist/mdk.js"
+    "prepare-package-info": "node scripts/prepare-package-info.js",
+    "bundle": "npm run prepare-package-info && esbuild src/cli.ts --bundle --platform=node --target=node22 --outfile=dist/mdk.js"
   },
   "devDependencies": {
     "@types/node": "^22.13.5",

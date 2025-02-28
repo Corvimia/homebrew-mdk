@@ -2,16 +2,12 @@
 
 import { Command } from 'commander';
 import chalk from 'chalk';
-import { readFileSync } from 'fs';
-import { join } from 'path';
+import { getNgrokUrl } from './ngrok';
+// Import from generated file if it exists (for builds), otherwise use the development version
+import { getPackageInfo } from './generated-package-info';
 
-// Use process.cwd() instead of import.meta.url
-const packageJsonPath = join(process.cwd(), 'package.json');
-
-// Read package.json
-const packageJson = JSON.parse(
-  readFileSync(packageJsonPath, 'utf-8')
-);
+// Get package info from the module that will be embedded in the SEA blob
+const packageInfo = getPackageInfo();
 
 process.removeAllListeners('warning');
 
@@ -21,13 +17,23 @@ const program = new Command();
 program
   .name('mdk')
   .description(`Mia's Dev Kit`)
-  .version(packageJson.version);
+  .version(packageInfo.version);
 
 program
   .command('version')
   .description('Display the version number')
   .action(() => {
-    console.log(chalk.blue('mdk version:'), chalk.green(packageJson.version));
+    console.log(chalk.blue('mdk version:'), chalk.green(packageInfo.version));
+  });
+
+  program
+  .command('ngrok')
+  .command('url')
+  .description('Extract URL from current ngrok')
+  .action(async () => {
+    const url = await getNgrokUrl();
+    console.log(chalk.blue("ngrok url:"), chalk.green(url));
+    // TODO: add it to the current clipboard
   });
 
 program.parse();

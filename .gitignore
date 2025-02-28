@@ -4,3 +4,4 @@ build
 dist/mdk.js
 mdk
 sea-prep.blob
+mdk-v*.tar.gz
