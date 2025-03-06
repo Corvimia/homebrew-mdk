@@ -8,4 +8,10 @@ const packageInfo = {
   "description": "Mia's Dev Kit"
 };
 
-export const getPackageInfo = () => packageInfo;
+export const getPackageInfo = (): PackageInfo => packageInfo;
+
+export interface PackageInfo {
+  name: string;
+  version: string;
+  description: string;
+}
