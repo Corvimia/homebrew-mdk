@@ -1,4 +1,4 @@
-.PHONY: package build sign bundle create-package update-formula
+.PHONY: package build sign bundle create-package update-formula release
 
 # Main packaging target that runs the full process
 package: build sign create-package update-formula
@@ -7,6 +7,18 @@ package: build sign create-package update-formula
 define get-version
 $(shell node -p "require('./package.json').version")
 endef
+
+# Update version and create a new package
+# Usage: 
+#   make release         (updates minor version)
+#   make release V=patch (updates patch version)
+#   make release V=major (updates major version)
+release:
+	@echo "Updating version..."
+	$(eval VERSION_TYPE := $(if $(V),$(V),minor))
+	@echo "Version update type: $(VERSION_TYPE)"
+	pnpm tsx scripts/update-version.ts $(VERSION_TYPE)
+	@$(MAKE) package
 
 # Build the application
 build:
@@ -28,13 +40,12 @@ sign: build
 create-package: sign
 	$(eval VERSION := $(call get-version))
 	tar -czf mdk-v$(VERSION).tar.gz mdk
-	$(eval HASH := $(shell shasum -a 256 mdk-v$(VERSION).tar.gz | cut -d ' ' -f 1))
-	@echo "New SHA256: $(HASH)"
-	@echo "Updating formula with version $(VERSION) and SHA256 $(HASH)"
 
 # Update the formula file with new version and hash
 update-formula: create-package
 	$(eval VERSION := $(call get-version))
 	$(eval HASH := $(shell shasum -a 256 mdk-v$(VERSION).tar.gz | cut -d ' ' -f 1))
+	@echo "New SHA256: $(HASH)"
+	@echo "Updating formula with version $(VERSION) and SHA256 $(HASH)"
 	pnpm tsx scripts/update-formula.ts "$(VERSION)" "$(HASH)"
 	
