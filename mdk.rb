@@ -6,8 +6,8 @@
 class Mdk < Formula
   desc "Mia's Dev Kit"
   homepage "https://github.com/Corvimia/mdk"
-  url "https://github.com/Corvimia/mdk/releases/download/v0.2.0/mdk-v0.2.0.tar.gz"
-  sha256 "76ac4ef58c33f63820b6c9f8cc83b4a0be26964d3ca68b2afb508111ca3869a3"
+  url "https://github.com/Corvimia/mdk/releases/download/v0.2.4/mdk-v0.2.4.tar.gz"
+  sha256 "d970dc2ee75042b89221910c85b749d86b7ded7641d9506a94b6e8733cb981cb"
   license "ISC"
 
   def install
@@ -15,6 +15,6 @@ class Mdk < Formula
   end
 
   test do
-    assert_match "0.2.0", shell_output("#{bin}/mdk version")
+    assert_match "0.2.4", shell_output("#{bin}/mdk version")
   end
 end
