@@ -48,9 +48,10 @@ jobs:
       
       - name: Commit package.json changes
         run: |
+          git checkout main
           git add package.json
           git commit -m "Update version to v${{ steps.get_version.outputs.VERSION }}"
-          git push https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:${GITHUB_REF#refs/*/}
+          git push origin main
       
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
