@@ -9,11 +9,9 @@ type NgrokTunnelResponse = {
 }
 
 export const getNgrokUrl = async () => {
-    const response = await axios.get<NgrokTunnelResponse>("localhost:4040/api/tunnels");
+    const response = await axios.get<NgrokTunnelResponse>("http://localhost:4040/api/tunnels");
 
     const url = response.data.tunnels[0].public_url;
 
-    // TODO: Parse to remove http(s)
-
-    return url;
+    return url.replace(/^https?:\/\//, '');
 }
