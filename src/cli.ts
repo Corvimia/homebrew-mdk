@@ -3,9 +3,9 @@
 import { Command } from 'commander';
 import chalk from 'chalk';
 import { getNgrokUrl } from './ngrok';
-import { getPackageInfo } from './utils/package-info';
 import { setupAdbWireless } from './adb';
 import { writeToClipboard } from './utils/clipboard';
+import { getPackageInfo } from './generated-package-info';
 
 // Don't import clipboardy at the top level to avoid errors when running simple commands
 // We'll import it dynamically only when needed
