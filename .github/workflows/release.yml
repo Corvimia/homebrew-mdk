@@ -50,6 +50,8 @@ jobs:
         run: |
           git checkout main
           git add package.json
+          git add mdk.rb
+          git add src/generated-package-info.ts
           git commit -m "Update version to v${{ steps.get_version.outputs.VERSION }}"
           git push origin main
       
