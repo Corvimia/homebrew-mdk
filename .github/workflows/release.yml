@@ -1,0 +1,67 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-release:
+    runs-on: macos-latest
+    if: startsWith(github.ref, 'refs/tags/v') && contains(github.ref, '.')
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+      
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: false
+      
+      - name: Get tag version
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+      
+      - name: Install dependencies
+        run: pnpm install
+      
+      - name: Update package.json version
+        run: |
+          # Update version in package.json to match tag
+          jq ".version = \"${{ steps.get_version.outputs.VERSION }}\"" package.json > tmp.json
+          mv tmp.json package.json
+          echo "Updated package.json version to ${{ steps.get_version.outputs.VERSION }}"
+      
+      - name: Build package
+        run: make package
+      
+      - name: Configure Git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+      
+      - name: Commit package.json changes
+        run: |
+          git add package.json
+          git commit -m "Update version to v${{ steps.get_version.outputs.VERSION }}"
+          git push https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:${GITHUB_REF#refs/*/}
+      
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: mdk-v${{ steps.get_version.outputs.VERSION }}.tar.gz
+          name: Release v${{ steps.get_version.outputs.VERSION }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
