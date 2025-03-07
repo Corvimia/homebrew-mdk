@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      adb-ts:
+        specifier: ^6.2.0
+        version: 6.2.0
       axios:
         specifier: ^1.8.1
         version: 1.8.1
@@ -188,6 +191,10 @@ packages:
 
   '@types/node@22.13.5':
     resolution: {integrity: sha512-+lTU0PxZXn0Dr1NBtC7Y8cR21AJr87dLLU953CWA6pMxxv/UDc7jYAY90upcrie1nRcD6XNG5HOYEDtgW5TxAg==}
+
+  adb-ts@6.2.0:
+    resolution: {integrity: sha512-AI+rrk2z1NR7PSUdE2yu8d53TEkpkT1U21o4wkdBZWgnahEB/cOqTN+j2KQJ1PgqALErbLl+fnjEH00wwD8uJA==}
+    engines: {node: '>=16'}
 
   asynckit@0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
@@ -409,6 +416,8 @@ snapshots:
   '@types/node@22.13.5':
     dependencies:
       undici-types: 6.20.0
+
+  adb-ts@6.2.0: {}
 
   asynckit@0.4.0: {}
 

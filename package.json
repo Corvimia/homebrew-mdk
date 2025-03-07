@@ -30,6 +30,7 @@
     "typescript": "^5.7.3"
   },
   "dependencies": {
+    "adb-ts": "^6.2.0",
     "axios": "^1.8.1",
     "chalk": "^5.4.1",
     "commander": "^13.1.0",

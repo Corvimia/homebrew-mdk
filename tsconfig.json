@@ -4,7 +4,9 @@
     "rootDir": "./src/",
     "outDir": "./build",
     "importHelpers": false,
-    "module": "commonjs"
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "skipLibCheck": true
   },
   "exclude": ["scripts/**/*"]
 }
