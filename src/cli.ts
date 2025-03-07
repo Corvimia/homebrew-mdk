@@ -6,6 +6,7 @@ import { getNgrokUrl } from './ngrok';
 import { setupAdbWireless } from './adb';
 import { writeToClipboard } from './utils/clipboard';
 import { getPackageInfo } from './generated-package-info';
+import { execSync } from 'child_process';
 
 // Don't import clipboardy at the top level to avoid errors when running simple commands
 // We'll import it dynamically only when needed
@@ -44,9 +45,14 @@ program
     }
   });
 
-// Add the adb-wireless command
-program
-  .command('adb-wireless')
+// Add the adb command with subcommands
+const adbCommand = program
+  .command('adb')
+  .description('Android Debug Bridge (ADB) related commands');
+
+// Add the adb wireless subcommand
+adbCommand
+  .command('wireless')
   .description('Switch Android device from USB to wireless ADB debugging')
   .option('-p, --port <port>', 'Specify custom port (default: 5555)')
   .option('-d, --device <serial>', 'Specify device serial number')
