@@ -1,5 +1,6 @@
 import { Command } from 'commander';
 import { registerUrlCommand } from './url';
+import { registerEnvCommand } from './env';
 
 export const registerNgrokCommands = (program: Command): Command => {
   const ngrokCommand = program
@@ -8,6 +9,7 @@ export const registerNgrokCommands = (program: Command): Command => {
   
   // Register subcommands
   registerUrlCommand(ngrokCommand);
+  registerEnvCommand(ngrokCommand);
 
   return ngrokCommand;
 }; 
