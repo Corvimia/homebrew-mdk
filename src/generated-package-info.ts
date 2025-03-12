@@ -4,7 +4,7 @@
 // Package info embedded during build
 const packageInfo = {
   "name": "mdk",
-  "version": "0.2.4",
+  "version": "0.3.0",
   "description": "Mia's Dev Kit"
 };
 
